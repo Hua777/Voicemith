@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTAU", "UTAU\UTAU.csproj", "{42F9D6A9-B4A6-4A5F-876F-CE8914E88852}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetLyric", "SetLyric\SetLyric.csproj", "{49D668AD-10F5-4E17-9D9B-F8D7E01101EF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestC", "TestC\TestC.csproj", "{24FB0AD8-FBEF-4F72-894A-219E8ACB48F1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetLyricInstaller", "SetLyricInstaller\SetLyricInstaller.csproj", "{7FC65A50-034E-400F-A59C-9BC41C761B3F}"
 EndProject
@@ -31,10 +29,6 @@ Global
 		{49D668AD-10F5-4E17-9D9B-F8D7E01101EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49D668AD-10F5-4E17-9D9B-F8D7E01101EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49D668AD-10F5-4E17-9D9B-F8D7E01101EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{24FB0AD8-FBEF-4F72-894A-219E8ACB48F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{24FB0AD8-FBEF-4F72-894A-219E8ACB48F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{24FB0AD8-FBEF-4F72-894A-219E8ACB48F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{24FB0AD8-FBEF-4F72-894A-219E8ACB48F1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7FC65A50-034E-400F-A59C-9BC41C761B3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7FC65A50-034E-400F-A59C-9BC41C761B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FC65A50-034E-400F-A59C-9BC41C761B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -8,64 +8,48 @@ namespace Weihua
 {
     public class CConvert
     {
-        private static Dictionary<string, string> ChineseZhuYin = new Dictionary<string, string>();
-        private static bool IsRead = false;
+        /// <summary>
+        /// 中文轉注音字典
+        /// </summary>
+        private static readonly Dictionary<string, string> ChineseZhuYin = ReadChineseZhuYinFile();
 
-        private static void TransWord(ref string _origin, string _chinese)
+        /// <summary>
+        /// 讀取中文轉注音字典
+        /// </summary>
+        /// <param name="filename">字典檔案，chinese=zhuyin 此種格式</param>
+        /// <returns>字典</returns>
+        private static Dictionary<string, string> ReadChineseZhuYinFile(string filename = "bopomofo")
         {
-            if (ChineseZhuYin.ContainsKey(_chinese))
+            Dictionary<string, string> tmp = new Dictionary<string, string>();
+            string[] lines = File.ReadAllLines(filename);
+            foreach (string line in lines)
             {
-                _origin = _origin + ChineseZhuYin[_chinese] + " ";
+                string[] linedetail = line.Split(new char[] { '=' });
+                if (!tmp.ContainsKey(linedetail[0]))
+                {
+                    tmp.Add(linedetail[0], linedetail[1]);
+                }
             }
-            else if (_chinese == "\r\n" || _chinese == "\n" || _chinese == "\t" || _chinese == "　")
-            {
-                _origin = _origin.Trim() + "\r\n";
-            }
-            else
-            {
-                _origin = _origin + _chinese;
-            }
+            return tmp;
         }
 
         public static string ToZhuYin(string _chinese)
         {
-            if (!IsRead)
-            {
-                string[] lines = File.ReadAllLines("bopomofo");
-                foreach (string line in lines)
-                {
-                    string[] linedetail = line.Split(new char[] { '=' });
-                    if (!ChineseZhuYin.ContainsKey(linedetail[0]))
-                    {
-                        ChineseZhuYin.Add(linedetail[0], linedetail[1]);
-                    }
-                }
-                IsRead = true;
-            }
-
-            string ret = "";
-            string buf = "";
+            List<string> zhuYinList = new List<string>();
             foreach (char c in _chinese)
             {
                 string x = c.ToString();
-                if (!ChineseZhuYin.ContainsKey(x))
+                if (ChineseZhuYin.ContainsKey(x))
                 {
-                    TransWord(ref ret, buf);
-                    buf = "";
-                    TransWord(ref ret, x);
-                }
-                else if (!ChineseZhuYin.ContainsKey(buf + x))
-                {
-                    TransWord(ref ret, buf);
-                    buf = x;
+                    zhuYinList.Add(ChineseZhuYin[x]);
                 }
                 else
                 {
-                    buf = buf + x;
+                    zhuYinList.Add(x);
                 }
             }
-            TransWord(ref ret, buf);
-            return Remove(ret.Trim());
+            string result = string.Join(" ", zhuYinList);
+            return ReplaceMultipleSpaceToOneSpace(result);
         }
 
         public static string ToPinYin(string _chinese)
@@ -90,10 +74,10 @@ namespace Weihua
                     result = result.Trim() + "\r\n";
                 }
             }
-            return Remove(result.Trim());
+            return ReplaceMultipleSpaceToOneSpace(result.Trim());
         }
 
-        private static string Remove(string _chinese)
+        private static string ReplaceMultipleSpaceToOneSpace(string _chinese)
         {
             while (_chinese.IndexOf("  ") >= 0)
             {
